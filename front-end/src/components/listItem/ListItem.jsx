@@ -1,6 +1,11 @@
-import "./listItem.scss"
-import { Add, PlayArrow, ThumbDownAltOutlined, ThumbUpAltOutlined } from "@material-ui/icons"
-import { useEffect, useState } from "react"
+import "./listItem.scss";
+import {
+    PlayArrow,
+    Add,
+    ThumbUpAltOutlined,
+    ThumbDownOutlined,
+} from "@material-ui/icons";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -14,27 +19,26 @@ export default function ListItem({ index, item }) {
                 const res = await axios.get("/movies/find/" + item, {
                     headers: {
                         token:
-                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTA1MGM0OWE5ZTgxOTdjOWVkYjIzYyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDIwOTA3ODAsImV4cCI6MTY0MjUyMjc4MH0.3VtL9FwMbTwzg02jzSfPqguKGJr6F73HK1fr4tFIvBs"
-                    },
+                                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTE4MTVmNmQyZTJmZWY0OGQyZDZhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MjE2ODczMiwiZXhwIjoxNjQyNjAwNzMyfQ.3YY3A4Zg1mlPcqu1PafcieLIAj_iiSecqYQuiB9qm30"
+                        },
                 });
                 setMovie(res.data);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
-        }
-        getMovie()
-    }, [item])
+        };
+        getMovie();
+    }, [item]);
+
     return (
         <Link to={{ pathname: "/watch", movie: movie }}>
             <div
                 className="listItem"
                 style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
                 onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}>
-                <img
-                    src={movie.img}
-                    alt=""
-                />
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                <img src={movie?.imgSm} alt="" />
                 {isHovered && (
                     <>
                         <video src={movie.trailer} autoPlay={true} loop />
@@ -42,24 +46,20 @@ export default function ListItem({ index, item }) {
                             <div className="icons">
                                 <PlayArrow className="icon" />
                                 <Add className="icon" />
-                                <ThumbDownAltOutlined className="icon" />
                                 <ThumbUpAltOutlined className="icon" />
+                                <ThumbDownOutlined className="icon" />
                             </div>
                             <div className="itemInfoTop">
                                 <span>{movie.duration}</span>
                                 <span className="limit">+{movie.limit}</span>
                                 <span>{movie.year}</span>
                             </div>
-                            <div className="desc">
-                                {movie.desc}
-                            </div>
-                            <div className="genre">
-                                {movie.genre}
-                            </div>
+                            <div className="desc">{movie.desc}</div>
+                            <div className="genre">{movie.genre}</div>
                         </div>
                     </>
                 )}
             </div>
         </Link>
-    )
+    );
 }

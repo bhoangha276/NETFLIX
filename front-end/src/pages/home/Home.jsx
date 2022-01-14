@@ -1,41 +1,44 @@
-import Navbar from "../../components/navbar/Navbar"
+import Navbar from "../../components/navbar/Navbar";
 import Featured from "../../components/featured/Featured";
+import "./home.scss";
 import List from "../../components/list/List";
-import "./home.scss"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = ({ type }) => {
-    const [lists, setLists] = useState([])
-    const [genre, setGenre] = useState(null)
+    const [lists, setLists] = useState([]);
+    const [genre, setGenre] = useState(null);
 
     useEffect(() => {
         const getRandomLists = async () => {
             try {
                 const res = await axios.get(
-                    `lists${type ? "?type=" + type : ""}${genre ? "genre=" + genre : ""}`, {
-                    headers: {
-                        token:
-                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTA1MGM0OWE5ZTgxOTdjOWVkYjIzYyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDIwOTA3ODAsImV4cCI6MTY0MjUyMjc4MH0.3VtL9FwMbTwzg02jzSfPqguKGJr6F73HK1fr4tFIvBs"
+                    `lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""
+                    }`,
+                    {
+                        headers: {
+                            token:
+                                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTE4MTVmNmQyZTJmZWY0OGQyZDZhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MjE2ODczMiwiZXhwIjoxNjQyNjAwNzMyfQ.3YY3A4Zg1mlPcqu1PafcieLIAj_iiSecqYQuiB9qm30"
+                        },
                     }
-                }
                 );
-                setLists(res.data)
+                setLists(res.data);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
         };
-        getRandomLists()
+        getRandomLists();
     }, [type, genre]);
+
     return (
         <div className="home">
             <Navbar />
-            <Featured type={type} />
+            <Featured type={type} setGenre={setGenre} />
             {lists.map((list) => (
                 <List list={list} />
             ))}
         </div>
-    )
-}
+    );
+};
 
 export default Home;
