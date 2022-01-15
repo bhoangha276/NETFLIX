@@ -1,39 +1,33 @@
-import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import { InfoOutlined, PlayArrow } from "@material-ui/icons"
 import axios from "axios";
-import { useEffect, useState } from "react";
-import "./featured.scss";
+import { useEffect, useState } from "react"
+import "./featured.scss"
 
-export default function Featured({ type, setGenre }) {
+export default function Featured({ type }) {
     const [content, setContent] = useState({});
 
     useEffect(() => {
         const getRandomContent = async () => {
             try {
-                const res = await axios.get(`/movies/random?type=${type}`, {
+                const res = await axios.get(`/movies/random?type=${type}`,{
                     headers: {
                         token:
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTE4MTVmNmQyZTJmZWY0OGQyZDZhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MjE2ODczMiwiZXhwIjoxNjQyNjAwNzMyfQ.3YY3A4Zg1mlPcqu1PafcieLIAj_iiSecqYQuiB9qm30"
-                },
-                });
-                setContent(res.data[0]);
+                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTA1MGM0OWE5ZTgxOTdjOWVkYjIzYyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDIwOTA3ODAsImV4cCI6MTY0MjUyMjc4MH0.3VtL9FwMbTwzg02jzSfPqguKGJr6F73HK1fr4tFIvBs"
+                    },
+                })
+                setContent(res.data)
             } catch (err) {
                 console.log(err);
             }
         };
-        getRandomContent();
-    }, [type]);
-
-    console.log(content);
+        getRandomContent()
+    }, [type])
     return (
         <div className="featured">
             {type && (
                 <div className="category">
                     <span>{type === "movies" ? "Movies" : "Series"}</span>
-                    <select
-                        name="genre"
-                        id="genre"
-                        onChange={(e) => setGenre(e.target.value)}
-                    >
+                    <select name="genre" id="genre">
                         <option>Genre</option>
                         <option value="adventure">Adventure</option>
                         <option value="comedy">Comedy</option>
@@ -51,7 +45,9 @@ export default function Featured({ type, setGenre }) {
                     </select>
                 </div>
             )}
+
             <img src={content.img} alt="" />
+
             <div className="info">
                 <img src={content.imgTitle} alt="" />
                 <span className="desc">{content.desc}</span>
@@ -67,5 +63,5 @@ export default function Featured({ type, setGenre }) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
