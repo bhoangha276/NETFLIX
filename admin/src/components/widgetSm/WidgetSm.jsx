@@ -12,7 +12,7 @@ export default function WidgetSm() {
         const res = await axios.get("/users?new=true", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTBjNWMwYzUyOWM4OWE1MDk0MzVlZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MjE1NTU2MiwiZXhwIjoxNjQyNTg3NTYyfQ.xqP0KKl_zeAdQOcHUM3S3amqjTRl0Yqetm7iqaGnQhk",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
           },
         });
         setNewUsers(res.data);
@@ -22,7 +22,7 @@ export default function WidgetSm() {
     };
     getNewUsers();
   }, []);
-
+  
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>
