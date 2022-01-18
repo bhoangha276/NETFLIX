@@ -16,7 +16,6 @@ async function main() {
   console.log("DB connection successfuly!");
 }
 
-
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
