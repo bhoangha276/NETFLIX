@@ -6,9 +6,10 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const movieRoute = require("./routes/movies");
 const listRoute = require("./routes/lists");
+const cors = require("cors");
 
 dotenv.config();
-
+app.use(cors())
 main().catch(err => console.log(err));
 
 async function main() {
@@ -24,6 +25,6 @@ app.use("/api/lists", listRoute);
 
 app.listen(process.env.PORT || 8800, (err) => {
   if (err) throw err;
-  
+
   console.log("Backend server is running!");
 });
