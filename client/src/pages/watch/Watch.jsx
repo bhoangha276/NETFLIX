@@ -1,12 +1,29 @@
 import { ArrowBackOutlined } from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./watch.scss";
 import ReactPlayer from 'react-player';
-
+import { useEffect, useState } from "react";
+import axios from "../../axios";
 
 export default function Watch() {
-  const location = useLocation();
-  const movie = location.movie;
+  const { id } = useParams(); 
+  
+  const [movie, setMovie] = useState({});
+
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        const res = await axios.get(`/movies/find/${id}`);
+        setMovie(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMovie();
+  }, [id]);
+
+  
   return (
     <div className="watch">
       <Link to="/">
@@ -17,5 +34,6 @@ export default function Watch() {
       </Link>
       <ReactPlayer className="video" autoPlay progress controls url={movie.video} />
     </div>
+    
   );
 }

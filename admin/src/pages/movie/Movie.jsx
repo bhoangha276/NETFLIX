@@ -5,6 +5,13 @@ import { Publish } from "@material-ui/icons";
 export default function Movie() {
   const location = useLocation();
   const movie = location.movie;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    (list, dispatch);
+    history.push("/lists")
+  }
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -40,7 +47,7 @@ export default function Movie() {
         </div>
       </div>
       <div className="productBottom">
-        <form className="productForm">
+        <form className="productForm" onSubmit={handleSubmit}>
           <div className="productFormLeft">
             <label>Movie Title</label>
             <input type="text" placeholder={movie.title} />

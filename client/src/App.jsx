@@ -32,7 +32,7 @@ const App = () => {
             <Route path="/series">
               <Home type="series" />
             </Route>
-            <Route path="/watch">
+            <Route path="/watch/:id">
               <Watch />
             </Route>
           </>

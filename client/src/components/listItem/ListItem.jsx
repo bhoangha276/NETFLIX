@@ -26,7 +26,7 @@ export default function ListItem({ index, item }) {
   }, [item]);
 
   return (
-    <Link to={{ pathname: "/watch", movie: movie }}>
+    <Link to={{ pathname: `/watch/${movie._id}`, movie: movie }}>
       <div
         className="listItem"
         style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
