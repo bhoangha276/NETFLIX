@@ -7,9 +7,9 @@ export default function Movie() {
   const movie = location.movie;
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    (list, dispatch);
-    history.push("/lists")
+    // e.preventDefault();
+    // (list, dispatch);
+    // history.push("/lists")
   }
 
   return (
