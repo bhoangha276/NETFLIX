@@ -2,8 +2,9 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import "./featured.scss";
 import axios from '../../axios';
+import { Link } from "react-router-dom";
 
-export default function Featured({ type, setGenre }) {
+export default function Featured({ type, setGenre}) {
   const [content, setContent] = useState({});
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
+
 
   console.log(content);
   return (
@@ -48,13 +50,16 @@ export default function Featured({ type, setGenre }) {
       )}
       <img src={content.img} alt="" />
       <div className="info">
-        <img src={content.imgTitle} alt="" />
+        {/* <img src={content.imgTitle} alt="" /> */}
+        <span>{content.imgTitle}</span>
         <span className="desc">{content.desc}</span>
         <div className="buttons">
-          <button className="play">
-            <PlayArrow />
-            <span>Play</span>
-          </button>
+          <Link style={{textDecoration:"none"}} to={{ pathname: `/watch/${content._id}`, content: content }}>
+            <button className="play">
+              <PlayArrow />
+              <span>Play</span>
+            </button>
+          </Link>
           <button className="more">
             <InfoOutlined />
             <span>Info</span>
