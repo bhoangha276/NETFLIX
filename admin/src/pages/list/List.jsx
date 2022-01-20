@@ -1,10 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
 import "./list.css";
-import { Publish } from "@material-ui/icons";
+import { ListContext } from "../../context/listContext/ListContext";
+import { updateList } from "../../context/listContext/apiCalls";
+import { useHistory } from "react-router-dom";
+import { useContext } from "react";
 
 export default function List() {
   const location = useLocation();
   const list = location.list;
+
+  const history = useHistory();
+  const { dispatch } = useContext(ListContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateList(list._id, dispatch);
+    // history.push("/lists")
+  };
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -45,7 +58,7 @@ export default function List() {
             <input type="text" placeholder={list.genre} />
           </div>
           <div className="productFormRight">
-            <button className="productButton">Update</button>
+            <button className="productButton" onClick={handleSubmit}>Update</button>
           </div>
         </form>
       </div>

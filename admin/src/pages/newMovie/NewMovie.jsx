@@ -50,7 +50,7 @@ export default function NewMovie() {
     e.preventDefault();
     upload([
       { file: img, label: "img" },
-      { file: imgTitle, label: "imgTitle" },
+      // { file: imgTitle, label: "imgTitle" },
       { file: imgSm, label: "imgSm" },
       { file: trailer, label: "trailer" },
       { file: video, label: "video" },
@@ -76,12 +76,12 @@ export default function NewMovie() {
           />
         </div>
         <div className="addProductItem">
-          <label>Title image</label>
+          <label>Movie name</label>
           <input
-            type="file"
-            id="imgTitle"
+            type="text"
+            placeholder="Name"
             name="imgTitle"
-            onChange={(e) => setImgTitle(e.target.files[0])}
+            onChange={handleChange}
           />
         </div>
         <div className="addProductItem">
@@ -170,7 +170,7 @@ export default function NewMovie() {
             onChange={(e) => setVideo(e.target.files[0])}
           />
         </div>
-        {uploaded === 5 ? (
+        {uploaded === 4 ? (
           <button className="addProductButton" onClick={handleSubmit}>
             Create
           </button>

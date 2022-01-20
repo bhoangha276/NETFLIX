@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios";
 import { useRef } from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
@@ -35,9 +35,9 @@ export default function Register() {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
           />
-          {/* <Link to="/login"> */}
+          <Link to="/login" style={{ zIndex: 9999 }}>
             <button className="loginButton">Sign In</button>
-          {/* </Link> */}
+          </Link>
         </div>
       </div>
       <div className="container">

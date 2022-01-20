@@ -18,6 +18,20 @@ router.post("/", verify, async (req, res) => {
   }
 });
 
+//update
+router.put("/:id", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      const savedList = await newList.findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true });
+      res.status(201).json(savedList);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.status(403).json("You are not allowed!");
+  }
+});
+
 //DELETE
 
 router.delete("/:id", verify, async (req, res) => {
