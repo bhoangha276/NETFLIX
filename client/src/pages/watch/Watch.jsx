@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import axios from "../../axios";
 
 export default function Watch() {
-  const { id } = useParams(); 
-  
+  const { id } = useParams();
+
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Watch() {
     getMovie();
   }, [id]);
 
-  
+
   return (
     <div className="watch">
       <Link to="/">
@@ -32,8 +32,9 @@ export default function Watch() {
           Home
         </div>
       </Link>
-      <ReactPlayer className="video" autoPlay progress controls url={movie.video} />
+      <ReactPlayer style={{ objectFit: 'fill', paddingTop: 20 }} className="video" autoPlay progress controls url={movie.video}
+        width="100vw"
+        height='95%' fluid={false} playsInline />
     </div>
-    
   );
 }
