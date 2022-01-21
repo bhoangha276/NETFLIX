@@ -24,7 +24,7 @@ export default function Featured({ type, setGenre}) {
   return (
     <div className="featured">
       {type && (
-        <div className="category">
+        <div style={{paddingBottom:100}} className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select
             name="genre"
@@ -51,7 +51,7 @@ export default function Featured({ type, setGenre}) {
       <img src={content.img} alt="" />
       <div className="info">
         {/* <img src={content.imgTitle} alt="" /> */}
-        <span>{content.imgTitle}</span>
+        <span style={{fontSize:'20px',fontWeight:'bold',paddingTop:30}}>{content.imgTitle}</span>
         <span className="desc">{content.desc}</span>
         <div className="buttons">
           <Link style={{textDecoration:"none"}} to={{ pathname: `/watch/${content._id}`, content: content }}>
