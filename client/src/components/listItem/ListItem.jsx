@@ -30,14 +30,18 @@ export default function ListItem({ index, item }) {
     <Link to={{ pathname: `/watch/${movie._id}`, movie: movie }}>
       <div
         className="listItem"
-        style={{left: isHovered && index * 225 - 50 + index * 2.5 }}
+        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img src={movie?.imgSm} alt="" />
+        {!isHovered && (
+          <>
+            <img src={movie?.imgSm} alt="" />
+          </>
+        )}
         {isHovered && (
           <>
-            {movie.trailer && <ReactPlayer url={movie.trailer} playing={true} width="100%" height="120px" />}
+            {movie.trailer && <ReactPlayer url={movie.trailer} playing={true} width="100%" height="120px" loop  />}
             <div className="itemInfo">
               <div className="icons">
                 <PlayArrow className="icon" />
